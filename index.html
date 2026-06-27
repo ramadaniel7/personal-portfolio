@@ -8,6 +8,7 @@
     <meta property="og:title" content="Rama Daniel Oktavianus — Portfolio">
     <meta property="og:description" content="Creative Specialist & Data/Web Development Professional">
     <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/A1L0716.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
@@ -116,7 +117,6 @@
                 0 0 100px rgba(139,92,246,0.15);
         }
 
-        /* Afterglow breathing effect - runs after all chars revealed */
         .hero-title-breathing .hero-char.revealed {
             animation: char-breathe 4s ease-in-out infinite;
         }
@@ -138,7 +138,6 @@
             }
         }
 
-        /* Hero accent line */
         .hero-accent-line {
             width: 0;
             height: 2px;
@@ -147,11 +146,8 @@
             margin: 0 auto;
             transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .hero-accent-line.revealed {
-            width: 200px;
-        }
+        .hero-accent-line.revealed { width: 200px; }
 
-        /* Subtle grain overlay on title */
         .hero-title-container::after {
             content: '';
             position: absolute;
@@ -170,7 +166,7 @@
             50% { opacity: 1; transform: scale(1.05); }
         }
 
-        /* ========== OTHER REVEAL ANIMATIONS ========== */
+        /* ========== SCROLL REVEAL - NO BLACK SCREEN ========== */
         .reveal {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -236,17 +232,6 @@
         .stagger-10 { transition-delay: 0.5s; }
         .stagger-11 { transition-delay: 0.55s; }
         .stagger-12 { transition-delay: 0.6s; }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        .section-content {
-            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .section-content.entering { opacity: 0; transform: translateY(20px); }
-        .section-content.active { opacity: 1; transform: translateY(0); }
 
         .scroll-glow { position: relative; }
         .scroll-glow::before {
@@ -363,23 +348,9 @@
             box-shadow: 0 0 25px rgba(37,211,102,0.3);
             transform: translateY(-1px);
         }
-
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #8B5CF6, #A78BFA, #8B5CF6);
-            box-shadow: 0 0 10px rgba(139,92,246,0.5);
-            z-index: 9999;
-            transition: width 0.1s linear;
-        }
     </style>
 </head>
 <body>
-
-<!-- Scroll Progress Bar -->
-<div class="scroll-progress" id="scrollProgress" style="width: 0%;"></div>
 
 <!-- Page Loader -->
 <div class="page-loader" id="pageLoader">
@@ -414,15 +385,9 @@
         <a href="#portfolio" class="mobile-nav-link text-2xl font-light tracking-widest uppercase text-neutral-300 hover:text-purple-400 transition-colors">Portfolio</a>
         <a href="#contact" class="mobile-nav-link text-2xl font-light tracking-widest uppercase text-neutral-300 hover:text-purple-400 transition-colors">Contact</a>
         <div class="mt-8 flex gap-5">
-            <a href="https://www.linkedin.com/in/ramadanieloktav76/" target="_blank" class="text-neutral-500 hover:text-purple-400 transition-colors">
-                <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
-            </a>
-            <a href="https://instagram.com/rmadniel_7" target="_blank" class="text-neutral-500 hover:text-purple-400 transition-colors">
-                <span class="iconify" data-icon="lucide:instagram" data-width="20"></span>
-            </a>
-            <a href="mailto:ramadnaieloktavianus76@gmail.com" class="text-neutral-500 hover:text-purple-400 transition-colors">
-                <span class="iconify" data-icon="lucide:mail" data-width="20"></span>
-            </a>
+            <a href="https://www.linkedin.com/in/ramadanieloktav76/" target="_blank" class="text-neutral-500 hover:text-purple-400 transition-colors"><span class="iconify" data-icon="lucide:linkedin" data-width="20"></span></a>
+            <a href="https://instagram.com/rmadniel_7" target="_blank" class="text-neutral-500 hover:text-purple-400 transition-colors"><span class="iconify" data-icon="lucide:instagram" data-width="20"></span></a>
+            <a href="mailto:ramadnaieloktavianus76@gmail.com" class="text-neutral-500 hover:text-purple-400 transition-colors"><span class="iconify" data-icon="lucide:mail" data-width="20"></span></a>
         </div>
     </div>
 </div>
@@ -430,18 +395,11 @@
 <!-- ===================== HOME ===================== -->
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <canvas id="particles-canvas"></canvas>
-
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto section-content">
-        <!-- HERO TITLE - Character by Character Reveal -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <div class="hero-title-container relative mb-6" id="heroTitleContainer">
-            <h1 id="heroTitle" class="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-none select-none" style="color: transparent;">
-                PORTFOLIO
-            </h1>
+            <h1 id="heroTitle" class="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-none select-none" style="color: transparent;">PORTFOLIO</h1>
         </div>
-
-        <!-- Accent line that draws in after title -->
         <div class="hero-accent-line mb-8" id="heroAccentLine"></div>
-
         <p class="reveal-premium stagger-1 text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-6" id="heroSub">Creative Specialist & Data/Web Development</p>
         <h2 class="reveal-3d stagger-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-4" id="heroName">
             Rama Daniel<br>
@@ -460,7 +418,6 @@
             </a>
         </div>
     </div>
-
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator z-10" id="scrollIndicator" style="opacity:0;">
         <span class="iconify text-neutral-600" data-icon="lucide:chevron-down" data-width="20"></span>
     </div>
@@ -470,55 +427,45 @@
 <section id="about" class="py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6">
         <div class="section-divider mb-20"></div>
-        <div class="section-content">
-            <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">About Me</p>
-            <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-16">The Person Behind<br>the Pixels & Data</h2>
-            <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
-                <div class="md:col-span-2 reveal-left stagger-3">
-                    <div class="glow-border glow-border-purple max-w-sm mx-auto md:mx-0">
-                        <div class="spinner"></div>
-                        <div class="content">
-                            <img src="https://i.imgur.com/JS22doM.jpeg" alt="Rama Daniel Oktavianus" class="aspect-[3/4]" loading="lazy" referrerpolicy="no-referrer">
-                        </div>
-                    </div>
-                    <div class="mt-6 flex gap-4 justify-center md:justify-start">
-                        <div class="glow-border glow-border-purple w-24">
-                            <div class="spinner"></div>
-                            <div class="content"><img src="https://i.imgur.com/osF89Yz.jpeg" alt="Rama with camera" class="aspect-square" loading="lazy" referrerpolicy="no-referrer"></div>
-                        </div>
-                        <div class="glow-border glow-border-purple w-24">
-                            <div class="spinner"></div>
-                            <div class="content"><img src="https://i.imgur.com/FzO2BF3.jpeg" alt="Rama casual" class="aspect-square" loading="lazy" referrerpolicy="no-referrer"></div>
-                        </div>
-                    </div>
+        <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">About Me</p>
+        <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-16">The Person Behind<br>the Pixels & Data</h2>
+        <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
+            <div class="md:col-span-2 reveal-left stagger-3">
+                <div class="glow-border glow-border-purple max-w-sm mx-auto md:mx-0">
+                    <div class="spinner"></div>
+                    <div class="content"><img src="https://i.imgur.com/JS22doM.jpeg" alt="Rama Daniel Oktavianus" class="aspect-[3/4]" loading="lazy" referrerpolicy="no-referrer"></div>
                 </div>
-                <div class="md:col-span-3">
-                    <p class="reveal-right stagger-4 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-6">
-                        I am a professional who combines two core expertise areas: precise technical data management and a dynamic digital creative industry instinct. Since 2021, I have been actively innovating in digital content creation, focusing on video editing, visual storytelling, and graphic design tailored to Gen Z and Gen Alpha audience trends.
-                    </p>
-                    <p class="reveal-right stagger-5 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-6">
-                        In the technical and operational realm, I have a track record as a Data Validation Coordinator accustomed to managing large-scale workflows, handling over <span class="text-white font-medium">512,000+ government administration records</span>, and ensuring strict Quality Control (QC). This experience is supported by my capabilities in Web Development, script automation, and security system design — including the development of <span class="text-white font-medium">VEX-SYSTEM</span>, an anti-cheat system for Roblox games that doesn't solely rely on Roblox server data, but utilizes SQL and backend infrastructure to execute Global Bans. Players hit with a global ban through VEX-SYSTEM are restricted from entering any map that implements it.
-                    </p>
-                    <p class="reveal-right stagger-6 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-10">
-                        This combined background makes me a Creative Specialist who can execute edgy, bold, and engaging visual ideas — as seen in the <span class="text-purple-400 font-medium">Superego x Hushbeast</span> collaboration or <span class="text-purple-400 font-medium">TwinsBasketball</span> commercial production — while working with structure, execution speed, and efficient project management.
-                    </p>
-                    <blockquote class="reveal-clip stagger-7 border-l-2 border-purple-500 pl-5 mb-12">
-                        <p class="text-base md:text-lg font-medium text-white italic">"Di kehidupan ini, kalo lo masih ngerasa ga tenang, berarti Tuhan masih pengen lo hidup."</p>
-                        <cite class="text-xs text-neutral-600 mt-2 block not-italic uppercase tracking-wider">— Rama Daniel Oktavianus</cite>
-                    </blockquote>
-                    <div class="reveal-scale stagger-8 grid grid-cols-3 gap-6">
-                        <div class="text-center md:text-left scroll-glow rounded-lg p-3">
-                            <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">4+</p>
-                            <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Years Experience</p>
-                        </div>
-                        <div class="text-center md:text-left scroll-glow rounded-lg p-3 stagger-9">
-                            <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">512K+</p>
-                            <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Records Managed</p>
-                        </div>
-                        <div class="text-center md:text-left scroll-glow rounded-lg p-3 stagger-10">
-                            <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">6</p>
-                            <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Certifications</p>
-                        </div>
+                <div class="mt-6 flex gap-4 justify-center md:justify-start">
+                    <div class="glow-border glow-border-purple w-24"><div class="spinner"></div><div class="content"><img src="https://i.imgur.com/osF89Yz.jpeg" alt="Rama with camera" class="aspect-square" loading="lazy" referrerpolicy="no-referrer"></div></div>
+                    <div class="glow-border glow-border-purple w-24"><div class="spinner"></div><div class="content"><img src="https://i.imgur.com/FzO2BF3.jpeg" alt="Rama casual" class="aspect-square" loading="lazy" referrerpolicy="no-referrer"></div></div>
+                </div>
+            </div>
+            <div class="md:col-span-3">
+                <p class="reveal-right stagger-4 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-6">
+                    I am a professional who combines two core expertise areas: precise technical data management and a dynamic digital creative industry instinct. Since 2021, I have been actively innovating in digital content creation, focusing on video editing, visual storytelling, and graphic design tailored to Gen Z and Gen Alpha audience trends.
+                </p>
+                <p class="reveal-right stagger-5 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-6">
+                    In the technical and operational realm, I have a track record as a Data Validation Coordinator accustomed to managing large-scale workflows, handling over <span class="text-white font-medium">512,000+ government administration records</span>, and ensuring strict Quality Control (QC). This experience is supported by my capabilities in Web Development, script automation, and security system design — including the development of <span class="text-white font-medium">VEX-SYSTEM</span>, an anti-cheat system for Roblox games that doesn't solely rely on Roblox server data, but utilizes SQL and backend infrastructure to execute Global Bans. Players hit with a global ban through VEX-SYSTEM are restricted from entering any map that implements it.
+                </p>
+                <p class="reveal-right stagger-6 text-sm md:text-base font-light text-neutral-400 leading-relaxed mb-10">
+                    This combined background makes me a Creative Specialist who can execute edgy, bold, and engaging visual ideas — as seen in the <span class="text-purple-400 font-medium">Superego x Hushbeast</span> collaboration or <span class="text-purple-400 font-medium">TwinsBasketball</span> commercial production — while working with structure, execution speed, and efficient project management.
+                </p>
+                <blockquote class="reveal-clip stagger-7 border-l-2 border-purple-500 pl-5 mb-12">
+                    <p class="text-base md:text-lg font-medium text-white italic">"Di kehidupan ini, kalo lo masih ngerasa ga tenang, berarti Tuhan masih pengen lo hidup."</p>
+                    <cite class="text-xs text-neutral-600 mt-2 block not-italic uppercase tracking-wider">— Rama Daniel Oktavianus</cite>
+                </blockquote>
+                <div class="reveal-scale stagger-8 grid grid-cols-3 gap-6">
+                    <div class="text-center md:text-left scroll-glow rounded-lg p-3">
+                        <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">4+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Years Experience</p>
+                    </div>
+                    <div class="text-center md:text-left scroll-glow rounded-lg p-3 stagger-9">
+                        <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">512K+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Records Managed</p>
+                    </div>
+                    <div class="text-center md:text-left scroll-glow rounded-lg p-3 stagger-10">
+                        <p class="text-2xl md:text-3xl font-bold stat-glow text-purple-400">6</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-600 mt-1">Certifications</p>
                     </div>
                 </div>
             </div>
@@ -530,54 +477,48 @@
 <section id="skills" class="py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6">
         <div class="section-divider mb-20"></div>
-        <div class="section-content">
-            <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Skills & Competence</p>
-            <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-16">What I Bring<br>to the Table</h2>
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <div class="reveal-3d stagger-3 p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                            <span class="iconify text-purple-400" data-icon="lucide:sparkles" data-width="18"></span>
-                        </div>
-                        <h3 class="text-base font-semibold">Creative & Digital Production</h3>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-[#9999FF] shrink-0" data-icon="simple-icons:adobepremierepro" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Video Editing</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-red-400 shrink-0" data-icon="lucide:video" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Videography</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-[#00C4CC] shrink-0" data-icon="simple-icons:canva" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Graphic Design</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-purple-400 shrink-0" data-icon="lucide:camera" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Photography</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-blue-400 shrink-0" data-icon="lucide:book-open" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Content Planning & Storytelling</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-pink-400 shrink-0" data-icon="lucide:trending-up" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Social Media & Trends</span></div>
-                    </div>
+        <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Skills & Competence</p>
+        <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-16">What I Bring<br>to the Table</h2>
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="reveal-3d stagger-3 p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center"><span class="iconify text-purple-400" data-icon="lucide:sparkles" data-width="18"></span></div>
+                    <h3 class="text-base font-semibold">Creative & Digital Production</h3>
                 </div>
-                <div class="reveal-3d stagger-4 p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                            <span class="iconify text-purple-400" data-icon="lucide:cpu" data-width="18"></span>
-                        </div>
-                        <h3 class="text-base font-semibold">Technical & Management</h3>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-green-400 shrink-0" data-icon="lucide:check-circle" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Data Validation & QC</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-cyan-400 shrink-0" data-icon="lucide:file-text" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Workflow & Documentation</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-orange-400 shrink-0" data-icon="simple-icons:html5" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Web Development</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-yellow-400 shrink-0" data-icon="lucide:terminal" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Script Automation</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-sky-400 shrink-0" data-icon="lucide:cloud" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Hybrid-Cloud Architecture</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-emerald-400 shrink-0" data-icon="lucide:shield-check" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Security Systems</span></div>
-                        <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-indigo-400 shrink-0" data-icon="lucide:users" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Team Coordination & Field Operations</span></div>
-                    </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-[#9999FF] shrink-0" data-icon="simple-icons:adobepremierepro" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Video Editing</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-red-400 shrink-0" data-icon="lucide:video" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Videography</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-[#00C4CC] shrink-0" data-icon="simple-icons:canva" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Graphic Design</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-purple-400 shrink-0" data-icon="lucide:camera" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Photography</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-blue-400 shrink-0" data-icon="lucide:book-open" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Content Planning & Storytelling</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-pink-400 shrink-0" data-icon="lucide:trending-up" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Social Media & Trends</span></div>
                 </div>
             </div>
-            <div class="reveal-clip">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-6">Professional Certifications</h3>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="cert-card reveal-scale stagger-1 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2024</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Digital Marketing With AI</p><p class="text-[11px] text-neutral-600">Bandung AI Camp x Sanbercode</p></div>
-                    <div class="cert-card reveal-scale stagger-2 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2025</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Azure AI Fundamentals (AI-900)</p><p class="text-[11px] text-neutral-600">Microsoft</p></div>
-                    <div class="cert-card reveal-scale stagger-3 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2025</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Computational Thinking</p><p class="text-[11px] text-neutral-600">Digital Talent Scholarship</p></div>
-                    <div class="cert-card reveal-scale stagger-4 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Claude 101</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
-                    <div class="cert-card reveal-scale stagger-5 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Claude Code 101</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
-                    <div class="cert-card reveal-scale stagger-6 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">AI Fluency & Capabilities</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
+            <div class="reveal-3d stagger-4 p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center"><span class="iconify text-purple-400" data-icon="lucide:cpu" data-width="18"></span></div>
+                    <h3 class="text-base font-semibold">Technical & Management</h3>
                 </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-green-400 shrink-0" data-icon="lucide:check-circle" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Data Validation & QC</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-cyan-400 shrink-0" data-icon="lucide:file-text" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Workflow & Documentation</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-orange-400 shrink-0" data-icon="simple-icons:html5" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Web Development</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-yellow-400 shrink-0" data-icon="lucide:terminal" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Script Automation</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-sky-400 shrink-0" data-icon="lucide:cloud" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Hybrid-Cloud Architecture</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30"><span class="iconify text-emerald-400 shrink-0" data-icon="lucide:shield-check" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Security Systems</span></div>
+                    <div class="skill-item flex items-center gap-3 p-3 rounded-xl border border-neutral-800/50 bg-neutral-900/30 sm:col-span-2"><span class="iconify text-indigo-400 shrink-0" data-icon="lucide:users" data-width="18"></span><span class="text-[11px] font-medium text-neutral-300">Team Coordination & Field Operations</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="reveal-clip">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-6">Professional Certifications</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="cert-card reveal-scale stagger-1 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2024</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Digital Marketing With AI</p><p class="text-[11px] text-neutral-600">Bandung AI Camp x Sanbercode</p></div>
+                <div class="cert-card reveal-scale stagger-2 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2025</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Azure AI Fundamentals (AI-900)</p><p class="text-[11px] text-neutral-600">Microsoft</p></div>
+                <div class="cert-card reveal-scale stagger-3 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2025</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Computational Thinking</p><p class="text-[11px] text-neutral-600">Digital Talent Scholarship</p></div>
+                <div class="cert-card reveal-scale stagger-4 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Claude 101</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
+                <div class="cert-card reveal-scale stagger-5 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">Claude Code 101</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
+                <div class="cert-card reveal-scale stagger-6 p-5 rounded-xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow"><div class="flex items-start justify-between mb-3"><span class="iconify text-purple-400" data-icon="lucide:award" data-width="16"></span><span class="text-[10px] font-mono text-neutral-600">2026</span></div><p class="text-sm font-medium text-neutral-200 mb-1">AI Fluency & Capabilities</p><p class="text-[11px] text-neutral-600">Anthropic</p></div>
             </div>
         </div>
     </div>
@@ -587,38 +528,36 @@
 <section id="portfolio" class="py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6">
         <div class="section-divider mb-20"></div>
-        <div class="section-content">
-            <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Portfolio</p>
-            <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-6">Selected Works</h2>
-            <p class="reveal-premium stagger-3 text-sm font-light text-neutral-500 max-w-lg mb-16">A curated collection of photography, graphic design, and video production projects.</p>
-            <div class="mb-20">
-                <h3 class="reveal-clip text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-8 flex items-center gap-2">
-                    <span class="iconify text-purple-400" data-icon="lucide:camera" data-width="14"></span>
-                    Photography & Design
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    <div class="reveal-scale stagger-1 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/keHTYJg.jpeg" alt="Purification ritual" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Purification Ritual</p><p class="text-[10px] text-neutral-400">Graduation Event — Documentary</p></div></div></div>
-                    <div class="reveal-scale stagger-2 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/Ue8vQMI.jpeg" alt="Above the Rim" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Above the Rim</p><p class="text-[10px] text-neutral-400">Sports — Portrait</p></div></div></div>
-                    <div class="reveal-scale stagger-3 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/xgHi3wa.jpeg" alt="Club Trinity" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Club Trinity</p><p class="text-[10px] text-neutral-400">Sports — Group Portrait</p></div></div></div>
-                    <div class="reveal-scale stagger-4 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/w8hFHwO.jpeg" alt="Pre-Wedding Edit" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Pre-Wedding Edit</p><p class="text-[10px] text-neutral-400">Photography + Graphic Design</p></div></div></div>
-                    <div class="reveal-scale stagger-5 glow-border glow-border-purple group cursor-pointer md:col-span-2"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/1lUrMDK.jpeg" alt="Superego x Hushbeast" class="aspect-[4/5] md:aspect-[8/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Superego × Hushbeast</p><p class="text-[10px] text-neutral-400">Collaborative Graphic Design</p></div></div></div>
-                </div>
+        <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Portfolio</p>
+        <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-6">Selected Works</h2>
+        <p class="reveal-premium stagger-3 text-sm font-light text-neutral-500 max-w-lg mb-16">A curated collection of photography, graphic design, and video production projects.</p>
+        <div class="mb-20">
+            <h3 class="reveal-clip text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-8 flex items-center gap-2">
+                <span class="iconify text-purple-400" data-icon="lucide:camera" data-width="14"></span>
+                Photography & Design
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="reveal-scale stagger-1 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/keHTYJg.jpeg" alt="Purification ritual" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Purification Ritual</p><p class="text-[10px] text-neutral-400">Graduation Event — Documentary</p></div></div></div>
+                <div class="reveal-scale stagger-2 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/Ue8vQMI.jpeg" alt="Above the Rim" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Above the Rim</p><p class="text-[10px] text-neutral-400">Sports — Portrait</p></div></div></div>
+                <div class="reveal-scale stagger-3 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/xgHi3wa.jpeg" alt="Club Trinity" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Club Trinity</p><p class="text-[10px] text-neutral-400">Sports — Group Portrait</p></div></div></div>
+                <div class="reveal-scale stagger-4 glow-border glow-border-purple group cursor-pointer"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/w8hFHwO.jpeg" alt="Pre-Wedding Edit" class="aspect-[4/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Pre-Wedding Edit</p><p class="text-[10px] text-neutral-400">Photography + Graphic Design</p></div></div></div>
+                <div class="reveal-scale stagger-5 glow-border glow-border-purple group cursor-pointer md:col-span-2"><div class="spinner"></div><div class="content relative"><img src="https://i.imgur.com/1lUrMDK.jpeg" alt="Superego x Hushbeast" class="aspect-[4/5] md:aspect-[8/5]" loading="lazy" referrerpolicy="no-referrer"><div class="img-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4"><p class="text-xs font-medium text-white">Superego × Hushbeast</p><p class="text-[10px] text-neutral-400">Collaborative Graphic Design</p></div></div></div>
             </div>
-            <div>
-                <h3 class="reveal-clip text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-8 flex items-center gap-2">
-                    <span class="iconify text-purple-400" data-icon="lucide:film" data-width="14"></span>
-                    Video Production
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <a href="https://www.instagram.com/reel/DLxIXkEAfQm/" target="_blank" class="reveal-3d stagger-1 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">01</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DLyMfhrgtAw/" target="_blank" class="reveal-3d stagger-2 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a2e 0%,#1b1b3a 50%,#2d1b69 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">02</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DMKGObVgM4m/" target="_blank" class="reveal-3d stagger-3 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 50%,#3b1d8e 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">03</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DMUKg7zAJ7O/" target="_blank" class="reveal-3d stagger-4 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1052 50%,#4a1a7a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">04</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">After Movie — TwinsBasketball</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DMm281pg7lV/" target="_blank" class="reveal-3d stagger-5 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a1a2e 40%,#5b2c8e 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">Music Video</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Cinematic</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">05</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Music Video — Where Are Ü Now</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DOuY1MsgJg2/" target="_blank" class="reveal-3d stagger-6 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a1a 0%,#2a1a3e 50%,#3d2b5a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Training</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">06</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Training — TwinsBasketball</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DU5zQTQgKQo/" target="_blank" class="reveal-3d stagger-7 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0a1628 0%,#1a2a4a 50%,#2a3a6a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">07</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Camping — After Movie</p></div></div></a>
-                    <a href="https://www.instagram.com/reel/DU8OjWZAJTH/" target="_blank" class="reveal-3d stagger-8 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a0a0a 0%,#3a1a2a 50%,#6a2a4a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">08</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Tournament — After Movie</p></div></div></a>
-                </div>
+        </div>
+        <div>
+            <h3 class="reveal-clip text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-8 flex items-center gap-2">
+                <span class="iconify text-purple-400" data-icon="lucide:film" data-width="14"></span>
+                Video Production
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="https://www.instagram.com/reel/DLxIXkEAfQm/" target="_blank" class="reveal-3d stagger-1 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">01</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DLyMfhrgtAw/" target="_blank" class="reveal-3d stagger-2 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a2e 0%,#1b1b3a 50%,#2d1b69 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">02</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DMKGObVgM4m/" target="_blank" class="reveal-3d stagger-3 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 50%,#3b1d8e 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Advertisement</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">03</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Ad — TwinsBasketball</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DMUKg7zAJ7O/" target="_blank" class="reveal-3d stagger-4 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1052 50%,#4a1a7a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">04</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">After Movie — TwinsBasketball</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DMm281pg7lV/" target="_blank" class="reveal-3d stagger-5 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a1a2e 40%,#5b2c8e 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">Music Video</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Cinematic</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">05</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Music Video — Where Are Ü Now</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DOuY1MsgJg2/" target="_blank" class="reveal-3d stagger-6 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a1a1a 0%,#2a1a3e 50%,#3d2b5a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">Training</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">06</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Training — TwinsBasketball</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DU5zQTQgKQo/" target="_blank" class="reveal-3d stagger-7 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#0a1628 0%,#1a2a4a 50%,#2a3a6a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">07</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Camping — After Movie</p></div></div></a>
+                <a href="https://www.instagram.com/reel/DU8OjWZAJTH/" target="_blank" class="reveal-3d stagger-8 video-thumb block rounded-xl border border-neutral-800/50 overflow-hidden group relative"><div class="aspect-[9/16] relative" style="background:linear-gradient(135deg,#1a0a0a 0%,#3a1a2a 50%,#6a2a4a 100%)"><div class="absolute inset-0 flex items-center justify-center"><div class="text-center"><div class="play-icon w-11 h-11 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center"><span class="iconify text-purple-300 ml-0.5" data-icon="lucide:play" data-width="15"></span></div><p class="text-[10px] font-bold text-white/80 uppercase tracking-wider">TwinsBasketball</p><p class="text-[8px] text-purple-300/70 uppercase tracking-widest mt-0.5">After Movie</p></div></div><div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm rounded px-1.5 py-0.5"><p class="text-[8px] font-mono text-neutral-400">08</p></div><div class="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent"></div><div class="absolute bottom-2 left-2 right-2"><p class="text-[9px] font-medium text-white/90">Tournament — After Movie</p></div></div></a>
             </div>
         </div>
     </div>
@@ -628,31 +567,29 @@
 <section id="contact" class="py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6">
         <div class="section-divider mb-20"></div>
-        <div class="section-content">
-            <div class="text-center max-w-2xl mx-auto">
-                <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Get In Touch</p>
-                <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-6">Let's Create<br>Something Together</h2>
-                <p class="reveal-premium stagger-3 text-sm font-light text-neutral-500 mb-12 leading-relaxed">Whether it's a creative project, data challenge, or web development — I'm always open to new opportunities</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
-                <a href="mailto:ramadnaieloktavianus76@gmail.com" class="reveal-scale stagger-4 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:mail" data-width="20"></span><span class="text-xs font-medium text-neutral-300">Email</span></a>
-                <a href="https://www.linkedin.com/in/ramadanieloktav76/" target="_blank" class="reveal-scale stagger-5 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:linkedin" data-width="20"></span><span class="text-xs font-medium text-neutral-300">LinkedIn</span></a>
-                <a href="https://instagram.com/rmadniel_7" target="_blank" class="reveal-scale stagger-6 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:instagram" data-width="20"></span><span class="text-xs font-medium text-neutral-300">Instagram</span></a>
-                <a href="https://wa.me/6281234567890" target="_blank" class="reveal-scale stagger-7 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:message-circle" data-width="20"></span><span class="text-xs font-medium text-neutral-300">WhatsApp</span></a>
-            </div>
-            <div class="max-w-md mx-auto reveal-3d stagger-8">
-                <div class="p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
-                    <h3 class="text-base font-semibold mb-6 flex items-center gap-2"><span class="iconify text-green-400" data-icon="lucide:send" data-width="16"></span>Quick Message via WhatsApp</h3>
-                    <div class="space-y-4">
-                        <input type="text" id="waName" placeholder="Your Name" class="wa-input w-full px-4 py-3 rounded-lg border border-neutral-800 bg-neutral-900/50 text-sm text-white placeholder-neutral-600 transition-all duration-300">
-                        <textarea id="waMessage" placeholder="Your Message" rows="4" class="wa-input w-full px-4 py-3 rounded-lg border border-neutral-800 bg-neutral-900/50 text-sm text-white placeholder-neutral-600 transition-all duration-300 resize-none"></textarea>
-                        <button onclick="sendWhatsApp()" class="wa-btn w-full py-3 rounded-lg bg-green-500 hover:bg-green-400 text-white text-sm font-medium flex items-center justify-center gap-2"><span class="iconify" data-icon="lucide:send" data-width="16"></span>Send Message</button>
-                    </div>
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="reveal-premium text-xs font-medium uppercase tracking-[0.25em] text-purple-400 mb-4">Get In Touch</p>
+            <h2 class="reveal-3d stagger-2 text-3xl md:text-4xl font-bold tracking-tight mb-6">Let's Create<br>Something Together</h2>
+            <p class="reveal-premium stagger-3 text-sm font-light text-neutral-500 mb-12 leading-relaxed">Whether it's a creative project, data challenge, or web development — I'm always open to new opportunities</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
+            <a href="mailto:ramadnaieloktavianus76@gmail.com" class="reveal-scale stagger-4 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:mail" data-width="20"></span><span class="text-xs font-medium text-neutral-300">Email</span></a>
+            <a href="https://www.linkedin.com/in/ramadanieloktav76/" target="_blank" class="reveal-scale stagger-5 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:linkedin" data-width="20"></span><span class="text-xs font-medium text-neutral-300">LinkedIn</span></a>
+            <a href="https://instagram.com/rmadniel_7" target="_blank" class="reveal-scale stagger-6 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:instagram" data-width="20"></span><span class="text-xs font-medium text-neutral-300">Instagram</span></a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="reveal-scale stagger-7 contact-link flex flex-col items-center gap-3 p-6 rounded-xl border border-neutral-800/50 bg-[#0A0A0A]"><span class="iconify text-purple-400" data-icon="lucide:message-circle" data-width="20"></span><span class="text-xs font-medium text-neutral-300">WhatsApp</span></a>
+        </div>
+        <div class="max-w-md mx-auto reveal-3d stagger-8">
+            <div class="p-8 rounded-2xl border border-neutral-800/50 bg-[#0A0A0A] scroll-glow">
+                <h3 class="text-base font-semibold mb-6 flex items-center gap-2"><span class="iconify text-green-400" data-icon="lucide:send" data-width="16"></span>Quick Message via WhatsApp</h3>
+                <div class="space-y-4">
+                    <input type="text" id="waName" placeholder="Your Name" class="wa-input w-full px-4 py-3 rounded-lg border border-neutral-800 bg-neutral-900/50 text-sm text-white placeholder-neutral-600 transition-all duration-300">
+                    <textarea id="waMessage" placeholder="Your Message" rows="4" class="wa-input w-full px-4 py-3 rounded-lg border border-neutral-800 bg-neutral-900/50 text-sm text-white placeholder-neutral-600 transition-all duration-300 resize-none"></textarea>
+                    <button onclick="sendWhatsApp()" class="wa-btn w-full py-3 rounded-lg bg-green-500 hover:bg-green-400 text-white text-sm font-medium flex items-center justify-center gap-2"><span class="iconify" data-icon="lucide:send" data-width="16"></span>Send Message</button>
                 </div>
             </div>
-            <div class="mt-20 pt-8 border-t border-neutral-800/50 text-center">
-                <p class="text-[11px] text-neutral-600">© 2024 Rama Daniel Oktavianus. Crafted with precision & creativity.</p>
-            </div>
+        </div>
+        <div class="mt-20 pt-8 border-t border-neutral-800/50 text-center">
+            <p class="text-[11px] text-neutral-600">© 2024 Rama Daniel Oktavianus. Crafted with precision & creativity.</p>
         </div>
     </div>
 </section>
@@ -668,15 +605,13 @@ class HeroTitleReveal {
         this.originalText = this.titleEl.textContent.trim();
         this.chars = [];
         this.revealed = false;
-
         this.splitIntoChars();
         this.scheduleReveal();
     }
 
     splitIntoChars() {
         this.titleEl.innerHTML = '';
-        this.titleEl.style.color = 'transparent'; // hide original
-
+        this.titleEl.style.color = 'transparent';
         for (let i = 0; i < this.originalText.length; i++) {
             const span = document.createElement('span');
             span.className = 'hero-char';
@@ -687,42 +622,28 @@ class HeroTitleReveal {
     }
 
     scheduleReveal() {
-        // Start after page loader fades
-        setTimeout(() => {
-            this.revealChars();
-        }, 1000);
+        setTimeout(() => { this.revealChars(); }, 1000);
     }
 
     revealChars() {
         if (this.revealed) return;
         this.revealed = true;
-
         this.chars.forEach((char, i) => {
             setTimeout(() => {
                 char.classList.add('revealed');
-
-                // After last char: trigger accent line, then rest of hero content
                 if (i === this.chars.length - 1) {
                     setTimeout(() => {
                         this.accentLine.classList.add('revealed');
                         this.containerEl.classList.add('breathing');
-
-                        // Start breathing glow after all chars done
-                        setTimeout(() => {
-                            this.titleEl.classList.add('hero-title-breathing');
-                        }, 300);
-
-                        // Reveal remaining hero elements
+                        setTimeout(() => { this.titleEl.classList.add('hero-title-breathing'); }, 300);
                         this.revealHeroSubelements();
-
-                        // Show scroll indicator
                         setTimeout(() => {
                             this.scrollIndicator.style.transition = 'opacity 0.8s ease';
                             this.scrollIndicator.style.opacity = '1';
                         }, 800);
                     }, 200);
                 }
-            }, i * 60); // 60ms per character = ~0.6s total for 9 chars
+            }, i * 60);
         });
     }
 
@@ -733,90 +654,37 @@ class HeroTitleReveal {
             document.getElementById('heroTagline'),
             document.getElementById('heroCtas')
         ];
-
         subs.forEach((el, i) => {
-            setTimeout(() => {
-                el.classList.add('revealed');
-            }, i * 150);
+            setTimeout(() => { el.classList.add('revealed'); }, i * 150);
         });
     }
 }
 
-// ========== PREMIUM SCROLL ANIMATIONS ==========
-class PremiumScrollAnimations {
+// ========== SCROLL ANIMATIONS - DIRECT, NO BLACK SCREENS ==========
+class ScrollAnimations {
     constructor() {
-        this.init();
-    }
-
-    init() {
-        this.setupScrollProgress();
-        this.setupIntersectionObserver();
-        this.setupMagneticHover();
-        this.setupSectionTransitions();
+        this.setupRevealObserver();
         this.setupNavHighlight();
+        this.setupMagneticHover();
     }
 
-    setupScrollProgress() {
-        const progressBar = document.getElementById('scrollProgress');
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrollTop = window.scrollY;
-                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-    }
-
-    setupIntersectionObserver() {
+    setupRevealObserver() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.reveal, .reveal-premium, .reveal-clip, .reveal-3d, .reveal-left, .reveal-right, .reveal-scale, .scroll-glow, .section-divider').forEach(el => {
-            observer.observe(el);
+        }, {
+            // Trigger early — sedikit masuk viewport langsung aktif
+            threshold: 0.05,
+            // Mulai detect 60px sebelum elemen masuk viewport bawah
+            rootMargin: '0px 0px -60px 0px'
         });
-    }
 
-    setupMagneticHover() {
-        document.querySelectorAll('.magnetic').forEach(el => {
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-            el.addEventListener('mouseleave', () => {
-                el.style.transform = 'translate(0, 0)';
-            });
-        });
-    }
-
-    setupSectionTransitions() {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('entering');
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active');
-                    entry.target.classList.add('entering');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '-80px 0px -50% 0px' });
-
-        document.querySelectorAll('.section-content').forEach(section => {
-            section.classList.add('entering');
-            sectionObserver.observe(section);
-        });
+        document.querySelectorAll(
+            '.reveal, .reveal-premium, .reveal-clip, .reveal-3d, .reveal-left, .reveal-right, .reveal-scale, .scroll-glow, .section-divider'
+        ).forEach(el => observer.observe(el));
     }
 
     setupNavHighlight() {
@@ -843,6 +711,18 @@ class PremiumScrollAnimations {
                 });
                 ticking = true;
             }
+        });
+    }
+
+    setupMagneticHover() {
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                el.style.transform = `translate(${(e.clientX - rect.left - rect.width / 2) * 0.3}px, ${(e.clientY - rect.top - rect.height / 2) * 0.3}px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translate(0, 0)';
+            });
         });
     }
 }
@@ -1011,7 +891,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { document.getElementById('pageLoader').classList.add('hidden'); }, 800);
     new HeroTitleReveal();
-    new PremiumScrollAnimations();
+    new ScrollAnimations();
     new ParticleSystem(document.getElementById('particles-canvas'));
     new MobileMenu();
 });
